@@ -61,9 +61,6 @@ CSS = f"""
   @page {{ size:A4; margin:0; }}
   html,body {{ font-family:'Rubik',Arial,sans-serif; color:{INK}; }}
   body {{ font-size:8.9pt; line-height:1.21; }}
-  .banner {{ background:#e6f4ea; color:#137333; text-align:center; font-size:9.5pt;
-    font-weight:500; padding:5px 0; }}
-  .banner b {{ color:#0d652d; font-weight:700; }}
   .page {{ padding:12px 26px 8px; }}
 
   header {{ display:flex; justify-content:space-between; align-items:flex-start; gap:16px; }}
@@ -72,6 +69,7 @@ CSS = f"""
   .contact {{ margin-top:7px; display:flex; flex-wrap:wrap; gap:3px 16px; max-width:520px; }}
   .contact span {{ display:inline-flex; align-items:center; font-size:9pt; color:{GREY};
     white-space:nowrap; }}
+  .contact a.clink {{ text-decoration:none; color:inherit; }}
   .avatar {{ width:88px; height:88px; border-radius:50%; background:{AVATAR}; flex:none;
     display:flex; align-items:center; justify-content:center; color:#0b2a4a;
     font-size:22pt; font-weight:600; letter-spacing:1px; }}
@@ -120,13 +118,19 @@ def contact_line():
     gh = C.CONTACT_2.split("|")[1].strip()
     loc = C.CONTACT_1.split("|")[0].strip()
     items = [
-        (icon("phone"), phone),
-        (icon("mail"), email),
-        (icon("linkedin"), li),
-        (icon("github"), gh),
-        (icon("pin"), loc),
+        (icon("phone"), phone, "tel:" + phone.replace(" ", "")),
+        (icon("mail"), email, "mailto:" + email),
+        (icon("linkedin"), li, "https://" + li),
+        (icon("github"), gh, "https://" + gh),
+        (icon("pin"), loc, None),
     ]
-    return "".join(f"<span>{ic}{esc(t)}</span>" for ic, t in items)
+    out = []
+    for ic, t, href in items:
+        if href:
+            out.append(f'<a class="clink" href="{esc(href)}"><span>{ic}{esc(t)}</span></a>')
+        else:
+            out.append(f"<span>{ic}{esc(t)}</span>")
+    return "".join(out)
 
 
 def meta(dates, place="Remote"):
@@ -195,7 +199,6 @@ def build():
 
     doc = f"""<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
 <title>{esc(C.NAME.title())} - Resume</title><style>{CSS}</style></head><body>
-<div class="banner"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#137333" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px"><path d="M20 6L9 17l-5-5"/></svg>ATS-tested template &middot; <b>built to parse more cleanly</b></div>
 <div class="page">
   <header>
     <div>
