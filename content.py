@@ -51,7 +51,8 @@ EXPERIENCE = [
     {
         "role": "Frontend Engineer",
         "dates": "Apr 2024 - Apr 2025",
-        "org": "Optus EdTech  |  Remote",
+        "org": "Optus EdTech  |  Jabalpur, MP",
+        "location": "Jabalpur, MP",
         "stack": "React.js, Next.js, Tailwind CSS, RESTful APIs",
         "bullets": [
             "Migrated a legacy multi-page platform into a single-page React application, improving customer "
@@ -67,7 +68,8 @@ EXPERIENCE = [
     {
         "role": "Java & DSA Trainer (Mentor)",
         "dates": "Jun 2024 - Nov 2024",
-        "org": "CoderHouse  |  Remote",
+        "org": "CoderHouse  |  Jabalpur, MP",
+        "location": "Jabalpur, MP",
         "stack": "Java, Recursion, Trees, Graphs, Dynamic Programming",
         "bullets": [
             "Mentored 300+ students in Java and Data Structures & Algorithms, designing 40+ lesson plans across "
@@ -112,8 +114,8 @@ EDUCATION = {
 ACHIEVEMENTS = [
     {"title": "Google Kick Start", "date": "Oct 2022", "detail": "Round H \u2014 ranked 1542nd globally."},
     {"title": "Punjab Hackathon", "date": "Nov 2023", "detail": "Secured 5th place overall."},
-    {"title": "Best in Drill & Shooting", "date": "Jan 2024",
-     "detail": "Indian Army Attachment Camp, Jalandhar."},
+    {"title": "Best in Drill and Shooting (NCC)", "date": "Jan 2024",
+     "detail": "Army Attachment Camp, Jalandhar."},
     {"title": "LeetCode", "date": None,
      "detail": "500+ DSA problems solved, 100+ day streak (leetcode.com/u/amanjaiman890)."},
 ]

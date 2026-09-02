@@ -37,7 +37,7 @@ Product Manager and Frontend Engineer with 2+ years shipping production web appl
 - Engineered a type-safe REST layer on Prisma ORM and PostgreSQL with JWT authentication, automated releases through GitHub Actions and Vercel, and A/B tested onboarding to lift completion by 25%.
 
 ### Frontend Engineer
-**Optus EdTech | Remote** | Apr 2024 - Apr 2025
+**Optus EdTech | Jabalpur, MP** | Apr 2024 - Apr 2025
 *React.js, Next.js, Tailwind CSS, RESTful APIs*
 
 - Migrated a legacy multi-page platform into a single-page React application, improving customer engagement by 10% and eliminating full page reloads across core user journeys.
@@ -46,7 +46,7 @@ Product Manager and Frontend Engineer with 2+ years shipping production web appl
 - Integrated RESTful APIs with robust loading and error states, and improved SEO and accessibility using semantic HTML, ARIA attributes, and Core Web Vitals optimization.
 
 ### Java & DSA Trainer (Mentor)
-**CoderHouse | Remote** | Jun 2024 - Nov 2024
+**CoderHouse | Jabalpur, MP** | Jun 2024 - Nov 2024
 *Java, Recursion, Trees, Graphs, Dynamic Programming*
 
 - Mentored 300+ students in Java and Data Structures & Algorithms, designing 40+ lesson plans across Recursion, Trees, Graphs, and Dynamic Programming that raised batch assessment scores.
@@ -78,5 +78,5 @@ Product Manager and Frontend Engineer with 2+ years shipping production web appl
 
 - **Google Kick Start (Oct 2022):** Round H — ranked 1542nd globally.
 - **Punjab Hackathon (Nov 2023):** Secured 5th place overall.
-- **Best in Drill & Shooting (Jan 2024):** Indian Army Attachment Camp, Jalandhar.
+- **Best in Drill and Shooting (NCC) (Jan 2024):** Army Attachment Camp, Jalandhar.
 - **LeetCode:** 500+ DSA problems solved, 100+ day streak (leetcode.com/u/amanjaiman890).

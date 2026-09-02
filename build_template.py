@@ -148,7 +148,7 @@ def exp_block(j, place="Remote"):
     o = [f'<div class="role">{esc(j["role"])}</div>']
     if j.get("org"):
         o.append(f'<div class="org">{esc(j["org"].split("  |  ")[0])}</div>')
-    o.append(meta(j["dates"], place))
+    o.append(meta(j["dates"], j.get("location", place)))
     o.append("<ul>" + "".join(f"<li>{esc(b)}</li>" for b in j["bullets"]) + "</ul>")
     return "".join(o)
 
