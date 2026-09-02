@@ -110,8 +110,10 @@ EDUCATION = {
 }
 
 ACHIEVEMENTS = [
-    ("Google Kick Start 2022:", "Ranked 1542nd globally in Round H."),
-    ("Punjab State Hackathon 2023:", "Secured 5th place overall."),
-    ("Best in Drill & Shooting:", "Top honours, Indian Army Attachment Camp, Jalandhar (2024)."),
-    ("LeetCode:", "500+ DSA problems solved, 100+ day streak (leetcode.com/u/amanjaiman890)."),
+    {"title": "Google Kick Start", "date": "Oct 2022", "detail": "Round H \u2014 ranked 1542nd globally."},
+    {"title": "Punjab Hackathon", "date": "Nov 2023", "detail": "Secured 5th place overall."},
+    {"title": "Best in Drill & Shooting", "date": "Jan 2024",
+     "detail": "Indian Army Attachment Camp, Jalandhar."},
+    {"title": "LeetCode", "date": None,
+     "detail": "500+ DSA problems solved, 100+ day streak (leetcode.com/u/amanjaiman890)."},
 ]

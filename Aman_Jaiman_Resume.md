@@ -76,7 +76,7 @@ Product Manager and Frontend Engineer with 2+ years shipping production web appl
 
 ## ACHIEVEMENTS & RECOGNITION
 
-- **Google Kick Start 2022:** Ranked 1542nd globally in Round H.
-- **Punjab State Hackathon 2023:** Secured 5th place overall.
-- **Best in Drill & Shooting:** Top honours, Indian Army Attachment Camp, Jalandhar (2024).
+- **Google Kick Start (Oct 2022):** Round H — ranked 1542nd globally.
+- **Punjab Hackathon (Nov 2023):** Secured 5th place overall.
+- **Best in Drill & Shooting (Jan 2024):** Indian Army Attachment Camp, Jalandhar.
 - **LeetCode:** 500+ DSA problems solved, 100+ day streak (leetcode.com/u/amanjaiman890).

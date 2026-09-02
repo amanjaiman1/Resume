@@ -104,6 +104,12 @@ CSS = f"""
   .cgpa .val {{ font-size:12pt; }}
   .cgpa .val b {{ color:{BLUE}; font-weight:700; }}
   .projlink {{ color:{GREY}; font-size:8.6pt; margin:2px 0; display:flex; align-items:center; }}
+
+  .ach {{ margin-top:5px; break-inside:avoid; }}
+  .ach-row {{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; }}
+  .ach-title {{ font-weight:600; font-size:9.4pt; }}
+  .ach-date {{ color:{GREY}; font-size:8.4pt; white-space:nowrap; flex:none; }}
+  .ach-detail {{ color:#3c4043; font-size:8.7pt; margin-top:1px; }}
 """
 
 
@@ -195,6 +201,14 @@ def build():
         pills = "".join(f'<span class="pill">{esc(x.strip())}</span>' for x in parts if x.strip())
         right.append(f'<div class="skillgroup"><div class="skilllabel">{esc(label)}</div>'
                      f'<div class="pills">{pills}</div></div>')
+    right.append("</section>")
+
+    right.append('<section><h2>Achievements</h2>')
+    for a in C.ACHIEVEMENTS:
+        date = f'<span class="ach-date">{esc(a["date"])}</span>' if a.get("date") else ""
+        right.append(f'<div class="ach"><div class="ach-row">'
+                     f'<span class="ach-title">{esc(a["title"])}</span>{date}</div>'
+                     f'<div class="ach-detail">{esc(a["detail"])}</div></div>')
     right.append("</section>")
 
     doc = f"""<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">

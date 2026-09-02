@@ -122,8 +122,9 @@ def build_docx():
         bullet(C.EDUCATION["coursework"])
 
     heading("Achievements & Recognition")
-    for label, text in C.ACHIEVEMENTS:
-        bullet(text, label=label)
+    for a in C.ACHIEVEMENTS:
+        label = a["title"] + (f" ({a['date']})" if a.get("date") else "") + ":"
+        bullet(a["detail"], label=label)
 
     path = f"{OUT}/Aman_Jaiman_Resume.docx"
     doc.save(path)
@@ -202,8 +203,9 @@ def build_html():
     o.append("</div>")
 
     o.append("<h2>Achievements &amp; Recognition</h2><ul>")
-    for label, text in C.ACHIEVEMENTS:
-        o.append(f"<li><b>{e(label)}</b> {e(text)}</li>")
+    for a in C.ACHIEVEMENTS:
+        label = a["title"] + (f" ({a['date']})" if a.get("date") else "") + ":"
+        o.append(f"<li><b>{e(label)}</b> {e(a['detail'])}</li>")
     o.append("</ul></body></html>")
 
     path = f"{OUT}/Aman_Jaiman_Resume.html"
@@ -245,8 +247,9 @@ def build_md():
     if ed.get("coursework"):
         o += [f'- {ed["coursework"]}', ""]
     o += ["---", "", "## ACHIEVEMENTS & RECOGNITION", ""]
-    for label, text in C.ACHIEVEMENTS:
-        o.append(f"- **{label}** {text}")
+    for a in C.ACHIEVEMENTS:
+        label = a["title"] + (f" ({a['date']})" if a.get("date") else "") + ":"
+        o.append(f"- **{label}** {a['detail']}")
     o.append("")
 
     path = f"{OUT}/Aman_Jaiman_Resume.md"
