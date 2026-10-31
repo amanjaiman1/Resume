@@ -47,8 +47,10 @@ def icon(kind, color=BLUE):
         "code": "M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z",
         "globe": "M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z",
     }
+    # Centre the 11px icon exactly on the cap height of the text after it (Rubik capHeight = 0.7em),
+    # measured from the text baseline. This needs inline layout, so icon hosts are not flex boxes.
     return (f'<svg viewBox="0 0 24 24" width="11" height="11" fill="{color}" '
-            f'style="vertical-align:-1px;margin-right:4px;flex:none">'
+            f'style="vertical-align:calc(0.35em - 5.5px);margin-right:4px">'
             f'<path d="{paths[kind]}"/></svg>')
 
 
@@ -68,9 +70,9 @@ CSS = f"""
   header {{ display:flex; justify-content:space-between; align-items:flex-start; gap:16px; }}
   h1 {{ font-size:22pt; font-weight:700; letter-spacing:.5px; line-height:1; }}
   .subtitle {{ color:{BLUE}; font-size:11pt; font-weight:500; margin-top:4px; }}
-  .contact {{ margin-top:7px; display:flex; flex-wrap:wrap; gap:3px 16px; max-width:520px; }}
-  .contact span {{ display:inline-flex; align-items:center; font-size:9pt; color:{GREY};
-    white-space:nowrap; }}
+  .contact {{ margin-top:7px; display:flex; flex-wrap:wrap; align-items:baseline; gap:3px 16px;
+    max-width:520px; }}
+  .contact span {{ display:inline-block; font-size:9pt; color:{GREY}; white-space:nowrap; }}
   .contact a.clink {{ text-decoration:none; color:inherit; }}
   .avatar {{ width:88px; height:88px; border-radius:50%; background:{AVATAR}; flex:none;
     display:flex; align-items:center; justify-content:center; color:#0b2a4a;
@@ -84,10 +86,8 @@ CSS = f"""
 
   .role {{ font-size:10pt; font-weight:600; margin-top:5px; }}
   .org {{ color:{BLUE}; font-size:9.2pt; font-weight:500; margin-top:1px; }}
-  .meta {{ display:flex; flex-wrap:wrap; gap:2px 16px; color:{GREY}; font-size:8.6pt;
-    margin:2px 0 1px; }}
-  .meta span {{ display:inline-flex; align-items:center; }}
-  .meta .tech {{ color:{BLUE}; font-weight:500; }}
+  .meta {{ display:flex; flex-wrap:wrap; align-items:baseline; gap:2px 16px; color:{GREY};
+    font-size:8.6pt; margin:2px 0 1px; }}
   ul {{ list-style:none; margin-top:3px; }}
   li {{ position:relative; padding-left:11px; margin-bottom:1.5px; font-size:8.9pt; color:#3c4043; }}
   li::before {{ content:'•'; position:absolute; left:1px; color:{GREY}; }}
@@ -104,8 +104,9 @@ CSS = f"""
   .cgpa .lbl {{ font-size:8pt; color:{GREY}; letter-spacing:.5px; }}
   .cgpa .val {{ font-size:12pt; }}
   .cgpa .val b {{ color:{BLUE}; font-weight:700; }}
-  .projlink {{ color:{GREY}; font-size:8.6pt; margin:2px 0; display:flex; align-items:center; }}
-  .projlink a {{ display:inline-flex; align-items:center; color:inherit; text-decoration:none; }}
+  .projlink {{ color:{GREY}; font-size:8.6pt; margin:2px 0; }}
+  .projlink a {{ display:inline-block; color:inherit; text-decoration:none; }}
+  .projtech {{ color:#3c4043; font-size:8.6pt; font-weight:500; margin:2px 0; }}
 
   .ach {{ margin-top:5px; break-inside:avoid; }}
   .ach-row {{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; }}
@@ -156,10 +157,10 @@ def exp_block(j, place="Remote"):
 
 
 def proj_block(j):
-    # the tech stack sits right after the date, highlighted in the accent color
+    # date, tech stack, and link each get their own line, left-aligned under one another
     o = [f'<div class="role">{esc(j["role"])}</div>',
-         f'<div class="meta"><span>{icon("cal", GREY)}{esc(j["dates"])}</span>'
-         f'<span class="tech">{icon("code")}{esc(j["tech"])}</span></div>']
+         f'<div class="meta"><span>{icon("cal", GREY)}{esc(j["dates"])}</span></div>',
+         f'<div class="projtech">{icon("code", "#3c4043")}{esc(j["tech"])}</div>']
     link = j.get("link")
     if link:
         # a GitHub repo or a live site
