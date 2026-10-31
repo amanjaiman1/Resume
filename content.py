@@ -31,6 +31,9 @@ SKILLS = [
      "Agile & Scrum, Sprint Planning, A/B Testing, Product Analytics, Stakeholder Management, Go-to-Market"),
 ]
 
+# The styled template (build_template.py) leaves these groups out. The plain ATS resume keeps all four rows.
+TEMPLATE_EXCLUDED_SKILL_GROUPS = ("Backend & Tools", "Product Management")
+
 EXPERIENCE = [
     {
         "role": "Founder, Product Manager & Frontend Engineer",
@@ -78,30 +81,47 @@ EXPERIENCE = [
     },
 ]
 
-PROJECTS = [
-    {
-        "role": "DocMate - AI-Powered PDF Data Extraction Tool",
-        "dates": "Mar 2024 - Jun 2024",
-        "org": None,
-        "stack": None,
-        "bullets": [
-            "Built a document intelligence tool that extracts specific information from PDFs via natural-language "
-            "prompts, backed by a type-safe Prisma data model for storage, history, and retrieval. "
-            "Next.js, React.js, TypeScript, Prisma, Tailwind CSS  |  github.com/amanjaiman1/DocMate",
-        ],
-    },
-    {
-        "role": "3D T-Shirt Designer - Real-Time Product Customization Platform",
-        "dates": "Mar 2023 - Aug 2023",
-        "org": None,
-        "stack": None,
-        "bullets": [
-            "Developed a real-time 3D product customizer in Three.js letting users apply colors, logos, and text to "
-            "a live rotatable model and export the result, with Firebase authentication and protected routing. "
-            "React.js, Three.js, Node.js, Firebase, Tailwind CSS  |  github.com/amanjaiman1/Product_3D",
-        ],
-    },
-]
+SORT_AND_VISUALIZE = {
+    "role": "Sort & Visualize - Sorting Algorithm Visualizer",
+    "dates": "Jun 2026 - Present",
+    "org": None,
+    "stack": None,
+    "bullets": [
+        "Built and launched a free, interactive web app that reached 2,000+ users worldwide in its first 2 "
+        "months, animating 10 sorting algorithms with live pseudocode, two-way step controls, and comparison and "
+        "swap counters, backed by an SEO-optimized library of 42 guides. "
+        "Astro, JavaScript, Tailwind CSS  |  sortandvisualize.com",
+    ],
+}
+
+DOCMATE = {
+    "role": "DocMate - AI-Powered PDF Data Extraction Tool",
+    "dates": "Mar 2024 - Jun 2024",
+    "org": None,
+    "stack": None,
+    "bullets": [
+        "Built a document intelligence tool that extracts specific information from PDFs via natural-language "
+        "prompts, backed by a type-safe Prisma data model for storage, history, and retrieval. "
+        "Next.js, React.js, TypeScript, Prisma, Tailwind CSS  |  github.com/amanjaiman1/DocMate",
+    ],
+}
+
+PRODUCT_3D = {
+    "role": "3D T-Shirt Designer - Real-Time Product Customization Platform",
+    "dates": "Mar 2023 - Aug 2023",
+    "org": None,
+    "stack": None,
+    "bullets": [
+        "Developed a real-time 3D product customizer in Three.js letting users apply colors, logos, and text to "
+        "a live rotatable model and export the result, with Firebase authentication and protected routing. "
+        "React.js, Three.js, Node.js, Firebase, Tailwind CSS  |  github.com/amanjaiman1/Product_3D",
+    ],
+}
+
+PROJECTS = [DOCMATE, PRODUCT_3D]
+
+# The styled template lists Sort & Visualize in place of DocMate. The plain ATS resume keeps PROJECTS above.
+TEMPLATE_PROJECTS = [SORT_AND_VISUALIZE, PRODUCT_3D]
 
 EDUCATION = {
     "degree": "Bachelor of Technology (B.Tech), Computer Science & Engineering",
