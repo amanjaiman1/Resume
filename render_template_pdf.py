@@ -47,8 +47,8 @@ for label, cond in [
     ("Phone intact", "6378722785" in text),
     ("Current role reads as ongoing", "Present" in text),
     ("Education parseable", "Lovely Professional University" in text and "7.4" in text),
-    ("Summary + Skills + Experience present",
-     all(s.lower() in text.lower() for s in ["Summary", "Skills", "Experience", "Education", "Projects"])),
+    ("Skills + Experience + Education + Projects present",
+     all(s.lower() in text.lower() for s in ["Skills", "Experience", "Education", "Projects"])),
 ]:
     print(f"  [{'PASS' if cond else 'FAIL'}] {label}")
     ok &= bool(cond)

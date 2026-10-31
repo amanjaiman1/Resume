@@ -90,8 +90,6 @@ CSS = f"""
   li {{ position:relative; padding-left:11px; margin-bottom:1.5px; font-size:8.9pt; color:#3c4043; }}
   li::before {{ content:'•'; position:absolute; left:1px; color:{GREY}; }}
 
-  p.summary {{ font-size:9pt; color:#3c4043; }}
-
   .skillgroup {{ margin-bottom:6px; }}
   .skilllabel {{ color:{BLUE}; font-weight:600; font-size:9.4pt; margin-bottom:4px; }}
   .pills {{ display:flex; flex-wrap:wrap; gap:5px; }}
@@ -196,8 +194,7 @@ def build():
         left.append(proj_block(j))
     left.append("</section>")
 
-    right = [f'<section><h2>Summary</h2><p class="summary">{esc(C.SUMMARY)}</p></section>',
-             '<section><h2>Skills</h2>']
+    right = ['<section><h2>Skills</h2>']
     for label, items in C.SKILLS:
         if label in C.TEMPLATE_EXCLUDED_SKILL_GROUPS:
             continue

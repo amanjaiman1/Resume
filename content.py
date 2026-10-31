@@ -9,6 +9,7 @@ TITLE = "Product Manager  |  Frontend Engineer"
 CONTACT_1 = "Bharatpur, Rajasthan 321001, India  |  +91 6378722785  |  amanjaiman001@gmail.com"
 CONTACT_2 = "linkedin.com/in/aman-jaiman  |  github.com/amanjaiman1  |  leetcode.com/u/amanjaiman890"
 
+# Plain ATS resume only. The styled template (build_template.py) has no summary section.
 SUMMARY = (
     "Product Manager and Frontend Engineer with 2+ years shipping production web applications in React.js, "
     "Next.js, and TypeScript. Currently running an independent, stealth-stage product end to end, owning user "
