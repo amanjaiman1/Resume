@@ -44,6 +44,7 @@ def icon(kind, color=BLUE):
         "github": "M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33s1.7.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.16.58.67.48A10 10 0 0 0 22 12c0-5.52-4.48-10-10-10z",
         "pin": "M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z",
         "cal": "M7 2v2H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3V2h-2v2H9V2H7zM4 9h16v11H4V9z",
+        "code": "M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z",
         "globe": "M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z",
     }
     return (f'<svg viewBox="0 0 24 24" width="11" height="11" fill="{color}" '
@@ -86,6 +87,7 @@ CSS = f"""
   .meta {{ display:flex; flex-wrap:wrap; gap:2px 16px; color:{GREY}; font-size:8.6pt;
     margin:2px 0 1px; }}
   .meta span {{ display:inline-flex; align-items:center; }}
+  .meta .tech {{ color:{BLUE}; font-weight:500; }}
   ul {{ list-style:none; margin-top:3px; }}
   li {{ position:relative; padding-left:11px; margin-bottom:1.5px; font-size:8.9pt; color:#3c4043; }}
   li::before {{ content:'•'; position:absolute; left:1px; color:{GREY}; }}
@@ -154,20 +156,17 @@ def exp_block(j, place="Remote"):
 
 
 def proj_block(j):
-    text = j["bullets"][0]
-    # last "  |  " segment is the project link if present: a GitHub repo or a live site
-    link = ""
-    if "  |  " in text:
-        body, link = text.rsplit("  |  ", 1)
-    else:
-        body = text
+    # the tech stack sits right after the date, highlighted in the accent color
     o = [f'<div class="role">{esc(j["role"])}</div>',
-         f'<div class="meta"><span>{icon("cal", GREY)}{esc(j["dates"])}</span></div>']
+         f'<div class="meta"><span>{icon("cal", GREY)}{esc(j["dates"])}</span>'
+         f'<span class="tech">{icon("code")}{esc(j["tech"])}</span></div>']
+    link = j.get("link")
     if link:
+        # a GitHub repo or a live site
         kind = "github" if link.startswith("github.com") else "globe"
         o.append(f'<div class="projlink"><a href="{esc("https://" + link)}">'
                  f'{icon(kind, GREY)}{esc(link)}</a></div>')
-    o.append(f'<ul><li>{esc(body)}</li></ul>')
+    o.append(f'<ul><li>{esc(j["description"])}</li></ul>')
     return "".join(o)
 
 
