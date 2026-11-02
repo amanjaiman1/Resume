@@ -8,9 +8,10 @@ over a full-width rule, bold title rows with the date flush right, italic "organ
 hanging-indent bullets, and the original's date style (Apr 24 – Apr 25). Every right-aligned item ends
 exactly where the section rules end, and spacing is the same between every pair of entries.
 
-Content comes from content.py, the same data the styled template uses: title, contact details,
-education, experience, TEMPLATE_PROJECTS and achievements. Technical Skills are the exception: they are
-the original resume's own, kept word for word in content.CLASSIC_SKILLS.
+Content comes from content.py, the same data the styled template uses (title, contact details,
+education, TEMPLATE_PROJECTS), with these classic-only differences: Technical Skills are the original
+resume's own (CLASSIC_SKILLS), experience and achievements come from CLASSIC_EXPERIENCE and
+CLASSIC_ACHIEVEMENTS, and each project adds its "classic_points" bullets.
 
 Font: Gelasio (SIL Open Font License, see fonts/Gelasio-OFL.txt), a free lookalike of Georgia with the
 same old-style figures, embedded so the PDF is self-contained. Run render_classic_pdf.py next.
@@ -205,7 +206,7 @@ def education():
 
 def experience():
     out = []
-    for j in C.EXPERIENCE:
+    for j in C.CLASSIC_EXPERIENCE:
         org, _, place = j["org"].partition("  |  ")
         out.append('<div class="entry">'
                    + row(f'<b>{esc(j["role"])}</b>', f'<b>{esc(short_date(j["dates"]))}</b>')
@@ -221,29 +222,22 @@ def projects():
         name = p["role"].split(" - ")[0]  # the short name, as the original resume titles projects
         label = "Repository Link" if p["link"].startswith("github.com") else "Live Link"
         href = url(p["link"])
+        points = [p["description"], *p.get("classic_points", [])]
         out.append('<div class="entry">'
                    + row(f'<b>{esc(name)}</b> | <i>{esc(p["tech"])}.</i>',
                          f'<b>{esc(short_date(p["dates"]))}</b>')
-                   + bullets([esc(p["description"]), f'{label}: <a href="{esc(href)}">{esc(href)}</a>'])
+                   + bullets([*(esc(b) for b in points),
+                              f'{label}: <a href="{esc(href)}">{esc(href)}</a>'])
                    + "</div>")
     return "".join(out)
 
 
-# "... 100+ day streak (leetcode.com/u/amanjaiman890)." -> detail text, plus the link in the brackets
-LINK_AT_END = re.compile(r"(.*?)\s*\(([\w.-]+\.[a-z]{2,}/\S+)\)\.?")
-
-
 def achievements():
     out = []
-    for a in C.ACHIEVEMENTS:
-        detail, right = a["detail"], ""
-        m = LINK_AT_END.fullmatch(detail)
-        if m:  # the link moves to the right edge of the detail row, as in the original resume
-            detail, href = m.group(1) + ".", url(m.group(2))
-            right = f'<a href="{esc(href)}">{esc(href)}</a>'
+    for a in C.CLASSIC_ACHIEVEMENTS:
         date = f'<b>{esc(short_date(a["date"]))}</b>' if a.get("date") else ""
         out.append('<div class="entry">' + row(f'<b>{esc(a["title"])}</b>', date)
-                   + row(esc(detail), right, "row sub") + "</div>")
+                   + row(esc(a["detail"]), cls="row sub") + "</div>")
     return "".join(out)
 
 

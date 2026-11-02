@@ -89,6 +89,9 @@ EXPERIENCE = [
     },
 ]
 
+# The classic resume leaves out the stealth venture's last bullet (REST layer, JWT, CI, onboarding A/B test).
+CLASSIC_EXPERIENCE = [{**EXPERIENCE[0], "bullets": EXPERIENCE[0]["bullets"][:-1]}, *EXPERIENCE[1:]]
+
 # Projects keep the description, tech stack, and link apart: the styled template shows the tech stack next to
 # the date. plain_project() joins them back into the single bullet the plain ATS resume prints.
 SORT_AND_VISUALIZE = {
@@ -101,6 +104,14 @@ SORT_AND_VISUALIZE = {
     ),
     "tech": "Astro, JavaScript, Tailwind CSS",
     "link": "sortandvisualize.com",
+    # Extra bullets for the classic resume only. Checked against the New-Pro repo: visualiser.js has no
+    # imports and precomputes frames per algorithm; astro.config.mjs documents the 50-of-51 redirect fix.
+    "classic_points": [
+        "Engineered the visualizer in dependency-free JavaScript, precomputing each sort as frames so users can "
+        "rewind any step.",
+        "Fixed a Cloudflare Pages URL mismatch that left 50 of 51 sitemap URLs redirecting, and added a crawl "
+        "check to guard it.",
+    ],
 }
 
 DOCMATE = {
@@ -123,6 +134,15 @@ PRODUCT_3D = {
     ),
     "tech": "React.js, Three.js, Node.js, Firebase, Tailwind CSS",
     "link": "github.com/amanjaiman1/Product_3D",
+    # Extra bullets for the classic resume only. Checked on GitHub (Nov 2026): GSSoC'23 project with Aman as
+    # Project Admin; he merged 248 pull requests from 58 other people. The blog writes to Firestore, and the
+    # admin/ service sends newsletters with Express and Nodemailer.
+    "classic_points": [
+        "Served as Project Admin in GirlScript Summer of Code 2023, reviewing and merging 240+ pull requests "
+        "from 55+ contributors.",
+        "Grew it into a multi-page community platform with a Firestore-backed rich-text blog and an Express "
+        "newsletter service.",
+    ],
 }
 
 
@@ -153,3 +173,6 @@ ACHIEVEMENTS = [
     {"title": "LeetCode", "date": None,
      "detail": "500+ DSA problems solved, 100+ day streak (leetcode.com/u/amanjaiman890)."},
 ]
+
+# The classic resume has no LeetCode entry.
+CLASSIC_ACHIEVEMENTS = [a for a in ACHIEVEMENTS if a["title"] != "LeetCode"]

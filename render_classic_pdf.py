@@ -47,7 +47,14 @@ print("...\n")
 
 expected_links = {"mailto:amanjaiman001@gmail.com", "https://linkedin.com/in/aman-jaiman",
                   "https://github.com/amanjaiman1", "https://sortandvisualize.com/",
-                  "https://github.com/amanjaiman1/Product_3D", "https://leetcode.com/u/amanjaiman890"}
+                  "https://github.com/amanjaiman1/Product_3D"}
+bullets = [b for j in C.CLASSIC_EXPERIENCE for b in j["bullets"]]
+bullets += [b for p in C.TEMPLATE_PROJECTS for b in [p["description"], *p.get("classic_points", [])]]
+dropped = [b for j in C.EXPERIENCE for b in j["bullets"] if b not in bullets]
+
+
+def norm(s):
+    return " ".join(s.split())
 ok = True
 for label, cond in [
     ("Single page", pages == 1),
@@ -59,8 +66,11 @@ for label, cond in [
      all(s in flat for s in ["Technical Skills", "Education", "Experience", "Projects", "Achievements"])),
     ("Original Technical Skills kept word for word",
      all(" ".join(f"{label}: {items}".split()) in flat for label, items in C.CLASSIC_SKILLS)),
-    ("Sort & Visualize in, DocMate out", "Sort & Visualize" in flat and "DocMate" not in flat),
-    ("Contact, project and LeetCode links clickable", expected_links <= links),
+    ("Sort & Visualize in; DocMate and LeetCode out",
+     "Sort & Visualize" in flat and "DocMate" not in flat and "LeetCode" not in flat),
+    (f"All {len(bullets)} bullets present", all(norm(b) in flat for b in bullets)),
+    (f"{len(dropped)} dropped bullet(s) absent", not any(norm(b) in flat for b in dropped)),
+    ("Contact and project links clickable", expected_links <= links),
 ]:
     print(f"  [{'PASS' if cond else 'FAIL'}] {label}")
     ok &= bool(cond)

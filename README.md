@@ -8,7 +8,7 @@ formats stay in sync from a single source of truth.
 | File | Look | When to use |
 |---|---|---|
 | [`Aman_Jaiman_Resume_Template.pdf`](Aman_Jaiman_Resume_Template.pdf) | Two-column, styled, Rubik font | A **human** reads it — email, portfolio, LinkedIn, recruiter direct |
-| [`Aman_Jaiman_Resume_Classic.pdf`](Aman_Jaiman_Resume_Classic.pdf) | Single column, serif (Gelasio), US Letter: the layout of the original resume | Anywhere the original resume was used. Template content, with the original Technical Skills |
+| [`Aman_Jaiman_Resume_Classic.pdf`](Aman_Jaiman_Resume_Classic.pdf) | Single column, serif (Gelasio), US Letter: the layout of the original resume | Anywhere the original resume was used. Template content (no LeetCode, extra project bullets), with the original Technical Skills |
 | [`Aman_Jaiman_Resume.pdf`](Aman_Jaiman_Resume.pdf) / [`.docx`](Aman_Jaiman_Resume.docx) | Single column, plain | A **machine** parses it — application portals / ATS (Workday, Taleo, Greenhouse, Lever) |
 | [`Aman_Jaiman_Resume.md`](Aman_Jaiman_Resume.md) | Plain text | Pasting into application text boxes / LinkedIn |
 
