@@ -35,6 +35,13 @@ SKILLS = [
 # The styled template (build_template.py) leaves these groups out. The plain ATS resume keeps all four rows.
 TEMPLATE_EXCLUDED_SKILL_GROUPS = ("Backend & Tools", "Product Management")
 
+# The classic resume (build_classic.py) keeps the Technical Skills of Aman's original resume, word for word.
+CLASSIC_SKILLS = [
+    ("Languages", "C++, C, Java, Python, PHP, HTML/CSS, JavaScript, Flutter"),
+    ("Technologies/Frameworks", "Ubuntu, ReactJS, NextJS, TypeScript, Tailwind, MySQL, Git & Github."),
+    ("Skills", "Data Structures and Algorithms, Problem-Solving, Full Stack Development & Android Development."),
+]
+
 EXPERIENCE = [
     {
         "role": "Founder, Product Manager & Frontend Engineer",
